@@ -1,0 +1,27 @@
+.side-bar {
+  min-height: 100%;
+  color: red;
+  border-right: 3px solid lightgray;
+}
+
+.chart {
+  canvas {
+    margin: 20px 50px 20px 20px;
+    border: 1px solid lightgray;
+    padding: 5px;
+  }
+  box-sizing: border-box;
+}
+
+.vehicle-table {
+  padding: 20px;
+}
+.edit-icon {
+  cursor: pointer;
+}
+.delete-icon {
+  cursor: pointer;
+  span {
+    color: red;
+  }
+}

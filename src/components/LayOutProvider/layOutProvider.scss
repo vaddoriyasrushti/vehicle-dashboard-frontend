@@ -1,0 +1,23 @@
+.layout-wrapper {
+  height: 100vh;
+}
+.antd-sider {
+  border-right: 1px solid gray;
+  .sider-header {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    background-color: lightgray;
+  }
+}
+
+.content-wrapper {
+  margin: 24px 16px;
+  .content-element {
+    padding: 24;
+    min-Height: 100%;
+    background: #fff;
+  }
+}

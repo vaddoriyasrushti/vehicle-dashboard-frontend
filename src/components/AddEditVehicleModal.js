@@ -22,6 +22,7 @@ const AddEditModal = ({setIsAddModalOpen, toggleAddVehicleModel, isAddModalOpen,
         form.resetFields();
       } else {
         setIsAddModalOpen(true);
+        form.resetFields();
       }
     };
     const onFailure = (res) => {
@@ -47,12 +48,16 @@ const AddEditModal = ({setIsAddModalOpen, toggleAddVehicleModel, isAddModalOpen,
     dispatch(editVehicleByNo(selectedVehicle.no, {status: 'Sold'}, onSuccess, onFailure));
   }
 
+  const onCancel = () => {
+    toggleAddVehicleModel();
+    form.resetFields();
+  }
   return (
     <div>
       <Modal 
         title={isEdit ? "Edit Vehicle" : "Add Vehicle" }
         centered 
-        onCancel={toggleAddVehicleModel} 
+        onCancel={onCancel} 
         open={isAddModalOpen} 
         footer={false}>
         <Form

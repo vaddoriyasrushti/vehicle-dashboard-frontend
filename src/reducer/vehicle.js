@@ -40,13 +40,21 @@ const vehicleSlice = createSlice({
 export const { setLoading, setVehicleList, addNewVehicle, editNewVehicle, deleteVehicle } = vehicleSlice.actions;
 export default vehicleSlice.reducer;
 
+const headers = {
+  'Access-Control-Allow-Origin' : '*',
+  'Access-Control-Allow-Headers' :'Content-Type',
+  'Access-Control-Allow-Methods' :'GET, POST, PUT, DELETE',
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
 
+}
 export const getVehicleList =
   () => async (dispatch) => {
     dispatch(setLoading(true));
     try {
       await axios
-        .get(apiUrl.GET_VEHICLE)
+        .get(apiUrl.GET_VEHICLE, {         
+               headers})
         .then((response) => {
           if (response.status === 200) {
             dispatch(setVehicleList(response.data || []));
@@ -68,7 +76,9 @@ export const getVehicleList =
     dispatch(setLoading(true));
     try {
       await axios
-        .get(`${apiUrl.GET_VEHICLE}/${vehicleNo}`)
+        .get(`${apiUrl.GET_VEHICLE}/${vehicleNo}`,{         
+          headers}
+        )
         .then((response) => {
           if (response.status === 200) {
             dispatch(editNewVehicle(response.data?.[0] || []));
@@ -90,7 +100,8 @@ export const getVehicleList =
       dispatch(setLoading(true));
       try {
         await axios
-          .post(apiUrl.ADD_VEHICLE, values)
+          .post(apiUrl.ADD_VEHICLE, values, {         
+            headers})
           .then((response) => {
             if (response.status === 200) {
               onSuccess(response);
@@ -116,7 +127,8 @@ export const getVehicleList =
     dispatch(setLoading(true));
     try {
       await axios
-        .put(`${apiUrl.GET_VEHICLE}/${no}`, values)
+        .put(`${apiUrl.GET_VEHICLE}/${no}`, values, {         
+          headers})
         .then((response) => {
           if (response.status === 200) {
             onSuccess(response);
@@ -141,7 +153,8 @@ export const getVehicleList =
     dispatch(setLoading(true));
     try {
       await axios
-        .delete(`${apiUrl.DELETE_VEHICLE_BY_NO}/${vehicleNo}`)
+        .delete(`${apiUrl.DELETE_VEHICLE_BY_NO}/${vehicleNo}`, {         
+          headers})
         .then((response) => {
           if (response.status === 200) {
             onSuccess(response);
